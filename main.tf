@@ -24,8 +24,8 @@ resource "kubernetes_service" "main" {
       port        = var.port
       target_port = var.port
     }
-    type = "LoadBalancer"
-    external_ips  = ["${var.ip}"]
+    type         = "LoadBalancer"
+    external_ips = ["${var.ip}"]
   }
 }
 
@@ -51,7 +51,7 @@ resource "kubernetes_deployment" "main" {
           image = var.image
           name  = "${var.stack}-${var.context}"
           volume_mount {
-            name = "${var.stack}-${var.context}"
+            name       = "${var.stack}-${var.context}"
             mount_path = "/var/lib/influxdb2"
           }
         }
