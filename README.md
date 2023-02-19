@@ -8,8 +8,9 @@ This likey isn't a direct copy-paste for you because of kubernetes implementatio
 External modules can be brought into your project using `git submodule`:
 
 ```
-cd some-config-repo/modules/
-git submodule add git@github.com:nihr43/influxdb-tf.git
+mkdur -p modules
+git -C modules submodule add git@github.com:nihr43/influxdb-tf.git
+git submodule update --recursive --remote
 ```
 
 Then, this module can be used in a DRY manner for multiple environments:
