@@ -1,2 +1,2 @@
 lint:
-	terraform fmt
+	tofu fmt
