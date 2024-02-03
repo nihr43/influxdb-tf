@@ -35,6 +35,7 @@ resource "kubernetes_deployment" "main" {
   }
   spec {
     replicas = 1
+    strategy = "Recreate"
     selector {
       match_labels = {
         app = "${var.stack}-${var.context}"
