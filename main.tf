@@ -2,6 +2,7 @@ variable "context" {}
 variable "ip" {}
 variable "image" {}
 variable "storage" {}
+variable "storage_class" {}
 
 variable "port" {
   default = 8086
@@ -12,7 +13,6 @@ variable "stack" {
 }
 
 resource "kubernetes_service" "main" {
-  wait_for_load_balancer = "false"
   metadata {
     name = "${var.stack}-${var.context}"
   }
@@ -24,7 +24,7 @@ resource "kubernetes_service" "main" {
       port        = var.port
       target_port = var.port
     }
-    type         = "LoadBalancer"
+    type = "LoadBalancer"
     external_ips = ["${var.ip}"]
   }
 }
@@ -80,6 +80,6 @@ resource "kubernetes_persistent_volume_claim" "main" {
         storage = var.storage
       }
     }
-    storage_class_name = "rook-ceph-block"
+    storage_class_name = var.storage_class
   }
 }
