@@ -25,7 +25,7 @@ resource "kubernetes_service" "main" {
       target_port = var.port
     }
     type = "LoadBalancer"
-    external_ips = ["${var.ip}"]
+    load_balancer_ip = ["${var.ip}"]
   }
 }
 
